@@ -49,14 +49,14 @@ include 'conexion.php'
 				}
 			}
 	 ?>
-    <h2>Personal</h2>
+    
     <form class="form-inline my-2 my-lg-0 float-left">
         <a href="agregarpersonal.php" class="genric-btn info circle">Agregar</a>
     </form>
     <br>
     <form class="form-inline my-2 my-lg-0 float-right">
         <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
-        <a href=""><button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button></a>
+
     </form>
     <br>
 		<div class="table-responsive">
@@ -142,28 +142,28 @@ include 'conexion.php'
                             </td>
                             <td>'.$row['Salario'].'</td>
 							<td>';
-							if($row['ID_especialidad'] == '1'){
+							if($row['ID_Especialidad'] == '1'){
 								echo '<span class="label label-success">Medicina General</span>';
 							}
-                            else if ($row['ID_especialidad'] == '2' ){
+                            else if ($row['ID_Especialidad'] == '2' ){
 								echo '<span class="label label-info">Ortopedia</span>';
 							}
-                            else if ($row['ID_especialidad'] == '3' ){
+                            else if ($row['ID_Especialidad'] == '3' ){
 								echo '<span class="label label-warning">Fisioterapia</span>';
                             }
-                            else if ($row['ID_especialidad'] == '4' ){
+                            else if ($row['ID_Especialidad'] == '4' ){
 								echo '<span class="label label-warning">Nutrición</span>';
                             } 
-                            else if ($row['ID_especialidad'] == '5 ' ){
+                            else if ($row['ID_Especialidad'] == '5 ' ){
 								echo '<span class="label label-warning">Odontología</span>';
                             } 
-                            else if ($row['ID_especialidad'] == '6' ){
+                            else if ($row['ID_Especialidad'] == '6' ){
 								echo '<span class="label label-warning">Psicología</span>';
                             } 
-                            else if ($row['ID_especialidad'] == '7' ){
+                            else if ($row['ID_Especialidad'] == '7' ){
 								echo '<span class="label label-warning">Podología</span>';
                             } 
-                            else if ($row['ID_especialidad'] == '8' ){
+                            else if ($row['ID_Especialidad'] == '8' ){
 								echo '<span class="label label-warning">Otros</span>';
 							} 
 						echo '

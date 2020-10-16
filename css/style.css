@@ -3555,6 +3555,10 @@ ul {
   padding: 15px;
 }
 
+.regervation_part .regervation_part_iner .form-control option {
+    color: #000;
+}
+
 /* line 62, ../../01 cl html template/03_jun 2019/182_medico_html/sass/_regervation_part.scss */
 .regervation_part .regervation_part_iner textarea.form-control {
   height: 150px !important;

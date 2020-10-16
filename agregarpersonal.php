@@ -62,24 +62,24 @@ include 'conexion.php'
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="form-control" id="SexoEm" name="Sexo" required>
-                                        <option value="">Seleccione el sexo</option>
+                                        <option value="0">Seleccione el sexo</option>
                                         <?php
                                           $sql=$con -> query("Select * from tbl_sexo");
 
                                           while($fila=$sql->fetch_array()){
-                                              echo "<option value='".$fila['ID_Sexo']."'>".$fila['Descripcion']."</option>";
+                                              echo "<option value='".$fila['ID_Sexo']."'>".$fila['Descripcion_sexo']."</option>";
                                           }
                                         ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6" required>
                                     <select class="form-control" id="EstadoCEm" name="EstadoC">
-                                        <option value="" selected>Seleccione su estado civil</option>
+                                        <option value="0" selected>Seleccione su estado civil</option>
                                         <?php
                                           $sql=$con -> query("Select * from tbl_estado_civil");
 
                                           while($fila=$sql->fetch_array()){
-                                              echo "<option value='".$fila['ID_Est_Civil']."'>".$fila['Descripcion']."</option>";
+                                              echo "<option value='".$fila['ID_Est_Civil']."'>".$fila['Descripcion_est_civil']."</option>";
                                           }
                                         ?>
                                     </select>
@@ -108,7 +108,7 @@ include 'conexion.php'
                                           $sql=$con -> query("Select * from tbl_especialidad");
 
                                           while($fila=$sql->fetch_array()){
-                                              echo "<option value='".$fila['ID_especialidad']."'>".$fila['Descripcion']."</option>";
+                                              echo "<option value='".$fila['ID_especialidad']."'>".$fila['Descripcion_espec']."</option>";
                                           }
                                         ?>
                                     </select>

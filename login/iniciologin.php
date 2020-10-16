@@ -9,7 +9,7 @@ if (!empty($_POST)) {
 		$usuario = $_POST['usuario'];     
 		$contraseña = $_POST['contraseña'];
 
-		$query = mysqli_query($conn,"SELECT * FROM tbl_usuario WHERE Usuario = '$usuario' 
+		$query = mysqli_query($conn,"SELECT * FROM tbl_usuario WHERE Nom_Usuario = '$usuario' 
 			                  AND Contraseña = '$contraseña'"); //consulta y comprobacion a la base de datos
 		$result = mysqli_num_rows($query);
 
