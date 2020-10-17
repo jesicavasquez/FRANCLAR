@@ -1,8 +1,4 @@
-<?php
-//Activamos el almacenamiento en el buffer
-ob_start();
-session_start();
-?>
+
 <header class="main_menu">
         <div class="container">
             <div class="row align-items-center">
@@ -19,7 +15,7 @@ session_start();
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Bienvenido <?php echo $_SESSION['Usuario']; ?></a>
+                                    <a class="nav-link" href="#">Bienvenido <?php echo $_SESSION['Nom_Usuario']; ?></a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="Index.php">Home</a>

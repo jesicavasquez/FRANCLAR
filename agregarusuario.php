@@ -2,6 +2,7 @@
 <html lang="es">
 
 <?php
+session_start();
 include 'head.php'
 ?>
 <?php
@@ -22,7 +23,7 @@ include 'conexion.php'
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2>Usuario</h2>
+                            <h2>Agregar Usuario</h2>
                         </div>
                     </div>
                 </div>
@@ -31,8 +32,8 @@ include 'conexion.php'
     </section>
     <!-- breadcrumb start-->
 
-      <!--::regervation_part start::-->
-    <section class="regervation_part section_padding">
+<!--::regervation_part start::-->
+<section class="regervation_part section_padding">
         <div class="container">
             <div class="row align-items-center regervation_content">
                 <div class="col-lg-7">
@@ -53,13 +54,13 @@ include 'conexion.php'
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="EmailU" name="Email" placeholder="Email" required>
+                                    <input type="email" class="form-control" id="EmailU" name="Email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="text" onkeypress="return soloLetras(event)" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="NomU" name="Nom_Usuario" placeholder="Nombre de usuario" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="passwordU" name="Password" placeholder="Contraseña" required>
+                                    <input type="password" class="form-control" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,30}$" id="passwordU" name="Password"  minlength="8" maxlength="30" placeholder="Contraseña" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <select class="form-control" id="EstadoU" name="Estado" required>
@@ -88,6 +89,7 @@ include 'conexion.php'
                                 
                                 <div class="regerv_btn">
                                     <button type="submit" name="add" class="btn_2">Guardar</button>
+                                    <a href="Usuarios.php" class="btn_2">Cancelar</a>
                                 </div>
                             </div>
                         </form>
@@ -97,7 +99,6 @@ include 'conexion.php'
         </div>
     </section>
     <!--::regervation_part end::-->
-
     <!-- footer part start-->
     <?php
         include 'Copyright.php'

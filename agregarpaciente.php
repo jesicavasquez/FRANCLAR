@@ -1,9 +1,11 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 
 <?php
+session_start();
 include 'head.php'
 ?>
+
 <?php
 include 'conexion.php'
 ?>
@@ -15,8 +17,8 @@ include 'conexion.php'
     ?>
     <!-- Header part end-->
 
-    <!-- breadcrumb start-->
-    <section class="breadcrumb_part breadcrumb_bg">
+     <!-- breadcrumb start-->
+     <section class="breadcrumb_part breadcrumb_bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -30,38 +32,39 @@ include 'conexion.php'
         </div>
     </section>
     <!-- breadcrumb start-->
-<!--::regervation_part start::-->
-<section class="regervation_part section_padding">
+  
+    <!--::regervation_part start::-->
+    <section class="regervation_part section_padding">
         <div class="container">
             <div class="row align-items-center regervation_content">
                 <div class="col-lg-7">
                     <div class="regervation_part_iner">
-                        <form method="POST" action="GuardarPaciente.php" autocomplete="off">
+                        <form autocomplete="off"> 
                             <h2>Datos Personales</h2>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <input type="text" class="form-control" id="Nombre" onkeypress="return soloLetras(event)"placeholder="Nombre">
+                                    <input type="text" class="form-control" id="Nombre" onkeypress="return soloLetras(event)" maxlength="255" placeholder="Nombre">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="NumeroID" maxlength="13" placeholder="Número de identidad">
+                                    <input type="text" class="form-control" id="NumeroID" onkeypress="return solonumeros(event)" maxlength="13" placeholder="Número de identidad">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="text" class="form-control" id="FechaN" placeholder="Fecha de nacimiento">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="Edad" onkeypress="return solonumeros(event)" placeholder="Edad">
+                                    <input type="text" class="form-control" id="Edad" onkeypress="return solonumeros(event)" maxlength="3" placeholder="Edad">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="email" class="form-control" id="Email" placeholder="Email">
+                                    <input type="email" class="form-control" id="Email" maxlength="8" placeholder="Email">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="tel" class="form-control" id="Teléfono" onkeypress="return solonumeros(event)"maxlength="8" placeholder="Teléfono fijo">
+                                    <input type="tel" class="form-control" id="Teléfono" onkeypress="return solonumeros(event)" maxlength="8" placeholder="Teléfono fijo">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="Celular"  onkeypress="return solonumeros(event)" maxlength="8" placeholder="Celular">
+                                    <input type="text" class="form-control" id="Celular" onkeypress="return solonumeros(event)" maxlength="8" placeholder="Celular">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <input type="text" class="form-control" id="Direccion" placeholder="Dirección">
+                                    <input type="text" class="form-control" id="Direccion" maxlength="255" placeholder="Dirección">
                                 </div>
                                 <h2>Datos Generales</h2>
                                 <div class="form-row">
@@ -129,42 +132,42 @@ include 'conexion.php'
                                 <h2>Contacto de emergencia</h2>
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="NombreEmer" placeholder="Nombre de contacto">
+                                    <input type="text" class="form-control" id="NombreEmer" maxlength="40" placeholder="Nombre de contacto">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="Parentesco" placeholder="Parentesco">
+                                    <input type="text" class="form-control" id="Parentesco" maxlength="20" placeholder="Parentesco">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="Telefono" placeholder="Teléfono fijo">
+                                    <input type="text" class="form-control" id="Telefono" maxlength="8" placeholder="Teléfono fijo">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="Celular" placeholder="Celular">
+                                    <input type="text" class="form-control" id="Celular" maxlength="8" placeholder="Celular">
                                 </div>
 
                                 <h2>Antecedentes</h2>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="Personales" rows="2"
-                                        placeholder="Personales"></textarea>
+                                    maxlength="500" placeholder="Personales"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="Hospitalarios" rows="2"
-                                        placeholder="Hospitalarios"></textarea>
+                                    maxlength="500" placeholder="Hospitalarios"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="Alergicos" rows="2"
-                                        placeholder="Alérgicos"></textarea>
+                                    maxlength="500" placeholder="Alérgicos"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="Familiares" rows="2"
-                                        placeholder="Familiares"></textarea>
+                                    maxlength="500" placeholder="Familiares"></textarea>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="Habitos" rows="2"
-                                        placeholder="Hábitos"></textarea>
+                                    maxlength="500" placeholder="Hábitos"></textarea>
                                 </div>
                                 <div class="regerv_btn">
                                     <a type="submit" name="add" class="btn_2">Guardar</a>
-                                    <a href="Personal.php" class="btn_2">Cancelar</a>
+                                    <a href="Pacientes.php" class="btn_2">Cancelar</a>
                                 </div>
                             </div>
                         </form>
@@ -174,8 +177,8 @@ include 'conexion.php'
         </div>
     </section>
     <!--::regervation_part end::-->
-    <!-- footer part start-->
-    <?php
+
+<?php
         include 'Copyright.php'
     ?>
     <!-- footer part end-->
@@ -185,7 +188,6 @@ include 'conexion.php'
     <?php
         include 'script.php'
     ?>
-    
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 <html lang="es">
 
 <?php
+session_start();
 include 'head.php'
 ?>
 <?php
@@ -41,19 +42,19 @@ include 'conexion.php'
                             <h2>Datos Personales</h2>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="NombreEm" name="Nombre" placeholder="Nombre" required>
+                                    <input type="text" class="form-control" id="NombreEm" maxlength="50" onkeypress="return soloLetras(event)" name="Nombre" placeholder="Nombre" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" maxlength="13" id="NumeroIDEm" name="NumeroID" placeholder="Número de identidad" required>
+                                    <input type="text" class="form-control" maxlength="13" onkeypress="return solonumeros(event)" id="NumeroIDEm" name="NumeroID" placeholder="Número de identidad" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="text" id="FechaNEm" name="FechaN" class="input-group date form-control" date="" data-date-format="dd-mm-yyyy" placeholder="Fecha de nacimiento" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="tel" class="form-control" maxlength="8" id="TelefonoEm" name="Telefono" placeholder="Teléfono fijo">
+                                    <input type="tel" class="form-control" maxlength="8" onkeypress="return solonumeros(event)" id="TelefonoEm" name="Telefono" placeholder="Teléfono fijo">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="tel" class="form-control" maxlength="8" id="CelularEm" name="Celular" placeholder="Celular" required>
+                                    <input type="tel" class="form-control" maxlength="8" onkeypress="return solonumeros(event)" id="CelularEm" name="Celular" placeholder="Celular" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="text" class="form-control" id="DireccionEm" name="Direccion" placeholder="Dirección" required>
@@ -99,7 +100,7 @@ include 'conexion.php'
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="SalarioEm" name="Salario" placeholder="Salario" required>
+                                    <input type="text" class="form-control" id="SalarioEm" name="Salario" maxlength="6" onkeypress="return solonumeros(event)" placeholder="Salario" required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <select class="form-control" id="EspecialidadEm" name="Especialidad" required>

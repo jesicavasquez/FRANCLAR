@@ -29,5 +29,12 @@
     <link href="css/bootstrap-datepicker.css" rel="stylesheet">
     <!-- search CSS -->
     <link rel="stylesheet" type="text/css" href="css/search.css">
-
+    
+    <?php
+        if (!isset($_SESSION["Nom_Usuario"]))
+        {
+            header("Location: ../Franclar/login/login.php");
+        } 
+    ?>
+    
 </head>

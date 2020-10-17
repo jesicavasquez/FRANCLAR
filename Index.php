@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <?php
+session_start();
 include 'head.php'
 ?>
 

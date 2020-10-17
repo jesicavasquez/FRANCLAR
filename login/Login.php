@@ -18,11 +18,11 @@
             <form action="iniciologin.php" method="POST" autocomplete="off" class="login100-form validate-form">
                 <!-----Username---->
                 <label for="Username">Usuario</label>
-                <input type="text" name="usuario" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ingrese su usuario" autocomplete="off">
+                <input type="text" name="usuario" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Ingrese su usuario" autocomplete="off" required>
                 
                 <!-----Password----->
                 <label for="Password">Contraseña</label>
-                <input type="password" name="contraseña" placeholder="Ingrese su contraseña" autocomplete="off">
+                <input type="password" name="contraseña" placeholder="Ingrese su contraseña" pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,30}$" autocomplete="off" required>
                 
                 <input type="submit"  value="Entrar" >
                 

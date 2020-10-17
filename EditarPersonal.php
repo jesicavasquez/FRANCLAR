@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php
+session_start();
 include 'head.php'
 ?>
 <?php
@@ -42,9 +43,12 @@ include 'conexion.php'
             tbl_empleado.Dir_Empleado,
             tbl_sexo.ID_Sexo,
             tbl_sexo.Descripcion_sexo,	
+            tbl_estado_civil.ID_Est_Civil,
             tbl_estado_civil.Descripcion_est_civil,
+            tbl_cargo.ID_Cargo,
             tbl_cargo.nomb_cargo,
             tbl_empleado.Salario,
+            tbl_especialidad.ID_especialidad,
             tbl_especialidad.Descripcion_espec FROM tbl_empleado 
             INNER JOIN tbl_sexo on tbl_empleado.ID_Sexo = tbl_sexo.ID_Sexo
             INNER JOIN tbl_estado_civil on tbl_empleado.ID_Est_Civil = tbl_estado_civil.ID_Est_Civil
@@ -122,25 +126,31 @@ include 'conexion.php'
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6" required>
-                                    <select class="form-control" id="EstadoCEm" name="EstadoC">
-                                        <option value="" selected>Seleccione su estado civil</option>
-                                        <option value="1" <?php if ($row ['ID_Est_Civil']=='1'){echo "selected";} ?>>Soltero(a)</option>
-							            <option value="2" <?php if ($row ['ID_Est_Civil']=='2'){echo "selected";} ?>>Casado(a)</option>
-                                        <option value="3" <?php if ($row ['ID_Est_Civil']=='3'){echo "selected";} ?>>Unión Libre</option>
-							            <option value="4" <?php if ($row ['ID_Est_Civil']=='4'){echo "selected";} ?>>Viudo(a)</option>
+                                    <select class="form-control" id="EstadoCEm" name="EstadoC" required>
+                                    <option value="<?php echo $row ['ID_Est_Civil']; ?>"><?php echo $row ['Descripcion_est_civil']; ?></option>
+                                         <?php
+                                       	  $dato= $row ['ID_Est_Civil'];
+                                          $sql=mysqli_query($con,"SELECT * FROM tbl_estado_civil WHERE ID_Est_Civil<>'$dato'");
+                                          
+                                          while($fila=$sql->fetch_array()){
+                                              echo "<option value='".$fila['ID_Est_Civil']."'>".$fila['Descripcion_est_civil']."</option>";
+                                          }     
+                                        ?>
                                     </select>
                                 </div>
                                 <h2>Datos Especificos</h2>
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="form-control" id="cargoem" name="Cargo" required>
-                                        <option value="" selected>Seleccione un Rol</option>
-                                        <option value="1" <?php if ($row ['ID_Cargo']=='1'){echo "selected";} ?>>Doctor(a)</option>
-							            <option value="2" <?php if ($row ['ID_Cargo']=='2'){echo "selected";} ?>>Enfermero(a)</option>
-                                        <option value="3" <?php if ($row ['ID_Cargo']=='3'){echo "selected";} ?>>Cajero(a)</option>
-							            <option value="4" <?php if ($row ['ID_Cargo']=='4'){echo "selected";} ?>>Limpieza</option>
-                                        <option value="5" <?php if ($row ['ID_Cargo']=='4'){echo "selected";} ?>>Seguridad</option>
-                                        <option value="6" <?php if ($row ['ID_Cargo']=='4'){echo "selected";} ?>>Otros</option>
+                                    <option value="<?php echo $row ['ID_Cargo']; ?>"><?php echo $row ['nomb_cargo']; ?></option>
+                                         <?php
+                                       	  $dato= $row ['ID_Cargo'];
+                                          $sql=mysqli_query($con,"SELECT * FROM tbl_cargo WHERE ID_Cargo<>'$dato'");
+                                          
+                                          while($fila=$sql->fetch_array()){
+                                              echo "<option value='".$fila['ID_Cargo']."'>".$fila['nomb_cargo']."</option>";
+                                          }     
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -148,15 +158,15 @@ include 'conexion.php'
                                 </div>
                                 <div class="form-group col-md-12">
                                     <select class="form-control" id="EspecialidadEm" name="Especialidad" required>
-                                        <option value="" selected>Seleccione una especialidad</option>
-                                        <option value="1" <?php if ($row ['ID_especialidad']=='1'){echo "selected";} ?>>Medicina General</option>
-							            <option value="2" <?php if ($row ['ID_especialidad']=='2'){echo "selected";} ?>>Ortopedia</option>
-                                        <option value="3" <?php if ($row ['ID_especialidad']=='3'){echo "selected";} ?>>Fisioterapia</option>
-                                        <option value="3" <?php if ($row ['ID_especialidad']=='3'){echo "selected";} ?>>Nutrición</option>
-                                        <option value="3" <?php if ($row ['ID_especialidad']=='3'){echo "selected";} ?>>Odontología</option>
-                                        <option value="3" <?php if ($row ['ID_especialidad']=='3'){echo "selected";} ?>>Psicología</option>
-                                        <option value="3" <?php if ($row ['ID_especialidad']=='3'){echo "selected";} ?>>Podología</option>
-                                        <option value="3" <?php if ($row ['ID_especialidad']=='3'){echo "selected";} ?>>Otros</option>
+                                    <option value="<?php echo $row ['ID_especialidad']; ?>"><?php echo $row ['Descripcion_espec']; ?></option>
+                                         <?php
+                                       	  $dato= $row ['ID_especialidad'];
+                                          $sql=mysqli_query($con,"SELECT * FROM tbl_especialidad WHERE ID_especialidad<>'$dato'");
+                                          
+                                          while($fila=$sql->fetch_array()){
+                                              echo "<option value='".$fila['ID_especialidad']."'>".$fila['Descripcion_espec']."</option>";
+                                          }     
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="regerv_btn">

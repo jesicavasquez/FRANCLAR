@@ -2,6 +2,7 @@
 <html lang="es">
 
 <?php
+session_start();
 include 'head.php'
 ?>
 <?php
@@ -30,7 +31,6 @@ include 'conexion.php'
         </div>
     </section>
     <!-- breadcrumb start-->
-
 
     <!-- footer part start-->
     <?php

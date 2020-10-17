@@ -19,14 +19,14 @@ if (!empty($_POST)) {
 			//guardar los datos necesarios en variables SESSION
 			$_SESSION['active'] = true;
 			$_SESSION['ID_Usuario'] = $data['ID_Usuario'];
-			$_SESSION['Usuario'] = $data['Usuario'];
+			$_SESSION['Nom_Usuario'] = $data['Nom_Usuario'];
 			$_SESSION['ID_Rol'] = $data['ID_Rol'];
           
 
 			$rol = $_SESSION['ID_Rol'];  
 			switch ($rol) {
 				case 1:
-				     $usuario = $_SESSION['Usuario'];
+				     $usuario = $_SESSION['Nom_Usuario'];
 					header("location: ../Index.php");
 					break;
 				case 2:
