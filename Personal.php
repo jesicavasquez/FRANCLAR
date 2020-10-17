@@ -53,12 +53,14 @@ include 'conexion.php'
     <form class="form-inline my-2 my-lg-0 float-left">
         <a href="agregarpersonal.php" class="genric-btn info circle">Agregar</a>
     </form>
-    <br>
+   <br>
     <form class="form-inline my-2 my-lg-0 float-right">
         <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
 
     </form>
-    <br>
+	<br>
+	<br>
+			
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<tr>
@@ -69,7 +71,7 @@ include 'conexion.php'
                     <th>Teléfono</th>
                     <th>Celular</th>
                     <th>Dirección</th>
-					<th>Genero</th>
+					<th>Género</th>
 					<th>Estado Civil</th>
 					<th>Cargo</th>
 					<th>Salario</th>
@@ -77,7 +79,22 @@ include 'conexion.php'
                     <th>Acciones</th>
 				</tr>
 				<?php
-				$sql = mysqli_query($con, "SELECT * FROM tbl_empleado ORDER BY ID_Empleado ASC");
+				$sql = mysqli_query($con, "SELECT tbl_empleado.ID_Empleado,	
+				tbl_empleado.Nom_Empleado,
+				tbl_empleado.Cedula,
+				tbl_empleado.Fec_Nacimiento,	
+				tbl_empleado.Tel_Empleado,	
+				tbl_empleado.Cel_Empleado,
+				tbl_empleado.Dir_Empleado,
+				tbl_sexo.Descripcion_sexo,	
+				tbl_estado_civil.Descripcion_est_civil,
+				tbl_cargo.nomb_cargo,
+				tbl_empleado.Salario,
+				tbl_especialidad.Descripcion_espec FROM tbl_empleado 
+				INNER JOIN tbl_sexo on tbl_empleado.ID_Sexo = tbl_sexo.ID_Sexo
+				INNER JOIN tbl_estado_civil on tbl_empleado.ID_Est_Civil = tbl_estado_civil.ID_Est_Civil
+				INNER JOIN tbl_cargo on tbl_empleado.ID_Cargo = tbl_cargo.ID_Cargo
+				INNER JOIN tbl_especialidad on tbl_empleado.ID_Especialidad = tbl_especialidad.ID_especialidad");
 				if(mysqli_num_rows($sql) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{
@@ -91,85 +108,14 @@ include 'conexion.php'
                             <td>'.$row['Fec_Nacimiento'].'</td>
                             <td>'.$row['Tel_Empleado'].'</td>
                             <td>'.$row['Cel_Empleado'].'</td>
-                            <td>'.$row['Dir_Empleado'].'</td>
-							<td>';
-							if($row['ID_Sexo'] == '1'){
-								echo '<span class="label label-danger">Femenino</span>';
-							}
-                            else if ($row['ID_Sexo'] == '2' ){
-								echo '<span class="label label-info">Masculino</span>';
-							}
-						echo ' 
-						</td>
-							<td>';
-							if($row['ID_Est_Civil'] == '1'){
-								echo '<span class="label label-success">Soltero(a)</span>';
-							}
-                            else if ($row['ID_Est_Civil'] == '2' ){
-								echo '<span class="label label-info">Casado(a)</span>';
-							}
-                            else if ($row['ID_Est_Civil'] == '3' ){
-								echo '<span class="label label-warning">Divorciado(a)</span>';
-							} 
-							else if ($row['ID_Est_Civil'] == '4' ){
-								echo '<span class="label label-danger">Viudo(a)</span>';
-                            }
-                            else if ($row['ID_Est_Civil'] == '5' ){
-								echo '<span class="label label-primary">Otros</span>';
-							}
-						echo '
-                            </td>
-                            <td>';
-							if($row['ID_Cargo'] == '1'){
-								echo '<span class="label label-success">Doctor(a)</span>';
-							}
-                            else if ($row['ID_Cargo'] == '2' ){
-								echo '<span class="label label-info">Enfermero(a)</span>';
-							}
-                            else if ($row['ID_Cargo'] == '3' ){
-								echo '<span class="label label-warning">Cajero(a)</span>';
-							} 
-							else if ($row['ID_Cargo'] == '4' ){
-								echo '<span class="label label-warning">Limpieza</span>';
-                            }
-                            else if ($row['ID_Cargo'] == '5' ){
-								echo '<span class="label label-warning">Seguridad</span>';
-                            }
-                            else if ($row['ID_Cargo'] == '6' ){
-								echo '<span class="label label-warning">Otros</span>';
-							}
-						echo '
-                            </td>
-                            <td>'.$row['Salario'].'</td>
-							<td>';
-							if($row['ID_Especialidad'] == '1'){
-								echo '<span class="label label-success">Medicina General</span>';
-							}
-                            else if ($row['ID_Especialidad'] == '2' ){
-								echo '<span class="label label-info">Ortopedia</span>';
-							}
-                            else if ($row['ID_Especialidad'] == '3' ){
-								echo '<span class="label label-warning">Fisioterapia</span>';
-                            }
-                            else if ($row['ID_Especialidad'] == '4' ){
-								echo '<span class="label label-warning">Nutrición</span>';
-                            } 
-                            else if ($row['ID_Especialidad'] == '5 ' ){
-								echo '<span class="label label-warning">Odontología</span>';
-                            } 
-                            else if ($row['ID_Especialidad'] == '6' ){
-								echo '<span class="label label-warning">Psicología</span>';
-                            } 
-                            else if ($row['ID_Especialidad'] == '7' ){
-								echo '<span class="label label-warning">Podología</span>';
-                            } 
-                            else if ($row['ID_Especialidad'] == '8' ){
-								echo '<span class="label label-warning">Otros</span>';
-							} 
-						echo '
-                            </td>
+							<td>'.$row['Dir_Empleado'].'</td>
+							<td><span class="label label-info">'.$row['Descripcion_sexo'].'</span></td>
+							<td><span class="label label-success">'.$row['Descripcion_est_civil'].'</span></td>
+							<td><span class="label label-warning">'.$row['nomb_cargo'].'</span></td>
+							<td>'.$row['Salario'].'</td>
+							<td><span class="label label-primary">'.$row['Descripcion_espec'].'</span></td>				
 							<td>
-
+							
 							<a href="EditarPersonal.php?nik='.$row['ID_Empleado'].'" title="Editar datos" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 							<a href="Personal.php?aksi=delete&nik='.$row['ID_Empleado'].'" title="Eliminar" onclick="return confirm(\'¿Esta seguro de borrar los datos del colaborador '.$row['Nom_Empleado'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 							</td>

@@ -33,7 +33,23 @@ include 'conexion.php'
     <?php
 			// escaping, additionally removing everything that could be (html/javascript-) code
 			$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-			$sql = mysqli_query($con, "SELECT * FROM tbl_empleado WHERE ID_Empleado='$nik'");
+			$sql = mysqli_query($con, "SELECT tbl_empleado.ID_Empleado,	
+            tbl_empleado.Nom_Empleado,
+            tbl_empleado.Cedula,
+            tbl_empleado.Fec_Nacimiento,	
+            tbl_empleado.Tel_Empleado,	
+            tbl_empleado.Cel_Empleado,
+            tbl_empleado.Dir_Empleado,
+            tbl_sexo.ID_Sexo,
+            tbl_sexo.Descripcion_sexo,	
+            tbl_estado_civil.Descripcion_est_civil,
+            tbl_cargo.nomb_cargo,
+            tbl_empleado.Salario,
+            tbl_especialidad.Descripcion_espec FROM tbl_empleado 
+            INNER JOIN tbl_sexo on tbl_empleado.ID_Sexo = tbl_sexo.ID_Sexo
+            INNER JOIN tbl_estado_civil on tbl_empleado.ID_Est_Civil = tbl_estado_civil.ID_Est_Civil
+            INNER JOIN tbl_cargo on tbl_empleado.ID_Cargo = tbl_cargo.ID_Cargo
+            INNER JOIN tbl_especialidad on tbl_empleado.ID_Especialidad = tbl_especialidad.ID_especialidad WHERE ID_Empleado='$nik'");
 			if(mysqli_num_rows($sql) == 0){
 				header("Location: index.php");
 			}else{
@@ -76,10 +92,10 @@ include 'conexion.php'
                                     <input type="text" onkeypress="return soloLetras(event)" class="form-control" id="NombreEm" value="<?php echo $row ['Nom_Empleado']; ?>" name="Nombre" placeholder="Nombre" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="NumeroIDEm" name="NumeroID" value="<?php echo $row ['Cedula']; ?>" placeholder="Número de identidad" disabled="true" required>
+                                    <input type="text" class="form-control" id="NumeroIDEm" name="NumeroID" value="<?php echo $row ['Cedula']; ?>" placeholder="Número de identidad" disabled="false" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" id="FechaNEm" name="FechaN" value="<?php echo $row ['Fec_Nacimiento']; ?>" class="input-group date form-control" date="" data-date-format="dd-mm-yyyy" disabled="true" placeholder="Fecha de nacimiento" required>
+                                    <input type="text" id="FechaNEm" name="FechaN" value="<?php echo $row ['Fec_Nacimiento']; ?>" class="input-group date form-control" date="" data-date-format="dd-mm-yyyy" disabled="false" placeholder="Fecha de nacimiento" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="text" onkeypress="return solonumeros(event)" class="form-control" id="TelefonoEm" name="Telefono" value="<?php echo $row ['Tel_Empleado']; ?>" placeholder="Teléfono fijo">
@@ -94,18 +110,24 @@ include 'conexion.php'
                                 <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <select class="form-control" id="SexoEm" name="Sexo" required>
-                                        <option value="">Seleccione el sexo</option>
-                                        <option value="1" <?php if ($row ['ID_Sexo']=='1'){echo "selected";} ?>>Femenino</option>
-							            <option value="2" <?php if ($row ['ID_Sexo']=='2'){echo "selected";} ?>>Masculino</option>
+                                    <option value="<?php echo $row ['ID_Sexo']; ?>"><?php echo $row ['Descripcion_sexo']; ?></option>
+                                         <?php
+                                       	  $dato= $row ['ID_Sexo'];
+                                          $sql=mysqli_query($con,"SELECT * FROM tbl_sexo WHERE ID_Sexo<>'$dato'");
+                                          
+                                          while($fila=$sql->fetch_array()){
+                                              echo "<option value='".$fila['ID_Sexo']."'>".$fila['Descripcion_sexo']."</option>";
+                                          }     
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6" required>
                                     <select class="form-control" id="EstadoCEm" name="EstadoC">
                                         <option value="" selected>Seleccione su estado civil</option>
-                                        <option value="1" <?php if ($row ['ID_Est_Civil']=='1'){echo "selected";} ?>>Soltero</option>
-							            <option value="2" <?php if ($row ['ID_Est_Civil']=='2'){echo "selected";} ?>>Casado</option>
-                                        <option value="3" <?php if ($row ['ID_Est_Civil']=='3'){echo "selected";} ?>>Divorciado</option>
-							            <option value="4" <?php if ($row ['ID_Est_Civil']=='4'){echo "selected";} ?>>Viudo</option>
+                                        <option value="1" <?php if ($row ['ID_Est_Civil']=='1'){echo "selected";} ?>>Soltero(a)</option>
+							            <option value="2" <?php if ($row ['ID_Est_Civil']=='2'){echo "selected";} ?>>Casado(a)</option>
+                                        <option value="3" <?php if ($row ['ID_Est_Civil']=='3'){echo "selected";} ?>>Unión Libre</option>
+							            <option value="4" <?php if ($row ['ID_Est_Civil']=='4'){echo "selected";} ?>>Viudo(a)</option>
                                     </select>
                                 </div>
                                 <h2>Datos Especificos</h2>

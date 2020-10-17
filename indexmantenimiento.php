@@ -37,6 +37,11 @@ include 'head.php'
 				<a href="#" class="btn_2">Cargos</a>
 				<a href="#" class="btn_2">Especialidades</a>
 				<a href="#" class="btn_2">Servicios</a>
+                <a href="#" class="btn_2">Estado Civil</a>
+                <a href="#" class="btn_2">Sexos</a>
+                <a href="#" class="btn_2">Religiones</a>
+                <a href="#" class="btn_2">Tipos de Sangre</a>
+                <a href="#" class="btn_2">Diagnósticos</a>
 			
 		</div>
     </div>
