@@ -23,7 +23,7 @@ include 'conexion.php'
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2>Personal</h2>
+                        <h2>Agregar Personal</h2>
                         </div>
                     </div>
                 </div>
@@ -126,8 +126,9 @@ include 'conexion.php'
         </div>
     </section>
     <!--::regervation_part end::-->
-
     <!-- footer part start-->
+
+    
     <?php
         include 'Copyright.php'
     ?>

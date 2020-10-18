@@ -66,62 +66,39 @@ include 'conexion.php'
 			<table class="table table-striped table-hover">
 				<tr>
                     <th>No</th>
-					<th>No de empleado</th>
+					<th>Nombre de empleado</th>
 					<th>E-mail</th>
-                    <th>Usuario</th>
-                    <th>Contraseña</th>
+                    <th>Nombre Usuario</th>
                     <th>Estado</th>
                     <th>Rol</th>
                     <th>Acciones</th>
 				</tr>
 				<?php
-				$sql = mysqli_query($con, "SELECT * FROM tbl_usuario ORDER BY ID_Usuario ASC");
+				$sql = mysqli_query($con, "SELECT tbl_usuario.ID_Usuario,	
+                tbl_empleado.Nom_Empleado,
+                tbl_usuario.email,
+                tbl_usuario.Nom_Usuario,	
+                tbl_estado_usuario.Descripcion,	
+                tbl_roles.Rol FROM tbl_usuario 
+                INNER JOIN tbl_empleado on tbl_usuario.ID_Empleado = tbl_empleado.ID_Empleado
+                INNER JOIN tbl_estado_usuario on tbl_usuario.ID_Estado = tbl_estado_usuario.ID_Estado
+                INNER JOIN tbl_roles on tbl_usuario.ID_Rol = tbl_roles.ID_Rol");
 				if(mysqli_num_rows($sql) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{
 					$no = 1;
 					while($row = mysqli_fetch_assoc($sql)){
 						echo '
-                        <tr>
-                            <td>
-
-                                <a href="EditarUsuario.php?nik='.$row['ID_Usuario'].'" title="Editar datos" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                                <a href="Usuarios.php?aksi=delete&nik='.$row['ID_Usuario'].'" title="Eliminar" onclick="return confirm(\'¿Esta seguro de borrar los datos del usuario '.$row['Usuario'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                            </td>
+                        <tr>                            
                             <td>'.$row['ID_Usuario'].'</td>
-                            <td>'.$row['ID_Empleado'].'</td>
-                            <td>'.$row['Email'].'</td>
-                            <td>'.$row['Usuario'].'</td>
-                            <td>'.$row['Contraseña'].'</td>
-							<td>';
-							if($row['ID_Estado'] == '1'){
-								echo '<span class="label label-success">Nuevo</span>';
-							}
-                            else if ($row['ID_Estado'] == '2' ){
-								echo '<span class="label label-info">Activo</span>';
-                            }
-                            else if ($row['ID_Estado'] == '3' ){
-								echo '<span class="label label-info">Inactivo</span>';
-                            }
-                            else if ($row['ID_Estado'] == '4' ){
-								echo '<span class="label label-info">Bloqueado</span>';
-							}
-						echo ' 
-						</td>
-							<td>';
-							if($row['ID_Rol'] == '1'){
-								echo '<span class="label label-success">Admin</span>';
-							}
-                            else if ($row['ID_Rol'] == '2' ){
-								echo '<span class="label label-info">Doctor(a)</span>';
-							}
-                            else if ($row['ID_Rol'] == '3' ){
-								echo '<span class="label label-warning">Cajero(a)</span>';
-							} 
-							else if ($row['ID_Rol'] == '4' ){
-								echo '<span class="label label-warning">Enfermero(a)</span>';
-                            }
-						echo '
+                            <td>'.$row['Nom_Empleado'].'</td>
+                            <td>'.$row['email'].'</td>
+                            <td>'.$row['Nom_Usuario'].'</td>
+                            <td><span class="label label-info">'.$row['Descripcion'].'</span></td>
+                            <td><span class="label label-success">'.$row['Rol'].'</span></td>                            
+                            <td>
+                                    <a href="EditarUsuario.php?nik='.$row['ID_Usuario'].'" title="Editar datos" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                    <a href="Usuarios.php?aksi=delete&nik='.$row['ID_Usuario'].'" title="Eliminar" onclick="return confirm(\'¿Esta seguro de borrar los datos del usuario '.$row['Nom_Usuario'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                             </td>
 						</tr>
 						';
