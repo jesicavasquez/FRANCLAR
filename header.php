@@ -44,9 +44,6 @@
                                     <a class="nav-link" href="indexMantenimiento.php">Mantenimiento</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Turnero</a>
-                                </li>
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

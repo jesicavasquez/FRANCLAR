@@ -31,47 +31,6 @@ include 'conexion.php'
     </section>
     <!-- breadcrumb start-->
 
-    <!-- our depertment part start-->
-    <section class="our_depertment section_padding single_pepertment_page">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-xl-12">
-                    <div class="depertment_content">
-                        <div class="row justify-content-center">
-                            <div class="col-xl-8">
-                            <form>
-                            <h2>Ingresar una cita</h2>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="IDPac" placeholder="Id Paciente">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="IDCit" rows="4" placeholder="ID Cita">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="input-group date form-control" date="" data-date-format="dd-mm-yyyy" id="FechaAten" placeholder="Fecha de atención">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="time" id="default-picker" class="form-control" placeholder="Seleccione la hora">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="Precio" placeholder="Precio">
-                                </div>
-                            </div>
-                            <div class="regerv_btn">
-                                <a href="#" class="btn_2">Ingresar</a>
-                            </div>
-                            </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- our depertment part end-->
-
     <!-- footer part start-->
     <?php
 			if(isset($_GET['aksi']) == 'delete'){
@@ -90,11 +49,15 @@ include 'conexion.php'
 				}
 			}
 	 ?>
-    <br>
-    <br>
     <h2>Citas</h2>
+    <form class="form-inline my-2 my-lg-0 float-left">
+        <a href="agregarcita.php" class="genric-btn info circle">Agregar</a>
+    </form>
     <br>
-    <br>
+    <form class="form-inline my-2 my-lg-0 float-right">
+        <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
+        <a href=""><button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button></a>
+    </form>
 			<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<tr>
@@ -106,7 +69,7 @@ include 'conexion.php'
                     <th>Acciones</th>
 				</tr>
 				<?php
-				$sql = mysqli_query($con, "SELECT * FROM consulta ORDER BY ID_Consulta ASC");
+				$sql = mysqli_query($con, "SELECT * FROM tbl_consultas ORDER BY ID_Consulta ASC");
 				if(mysqli_num_rows($sql) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{

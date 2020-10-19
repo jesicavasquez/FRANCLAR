@@ -35,14 +35,14 @@ include 'head.php'
 				<a href="personal.php" class="btn_2">Personal</a>
 				<a href="usuarios.php" class="btn_2">Usuarios</a>
 				<a href="#" class="btn_2">Parámetros</a>
-				<a href="#" class="btn_2">Cargos</a>
-				<a href="#" class="btn_2">Especialidades</a>
-				<a href="#" class="btn_2">Servicios</a>
-                <a href="#" class="btn_2">Estado Civil</a>
-                <a href="#" class="btn_2">Sexos</a>
-                <a href="#" class="btn_2">Religiones</a>
-                <a href="#" class="btn_2">Tipos de Sangre</a>
-                <a href="#" class="btn_2">Diagnósticos</a>
+				<a href="cargos.php" class="btn_2">Cargos</a>
+				<a href="Especialidades.php" class="btn_2">Especialidades</a>
+				<a href="Servicios.php" class="btn_2">Servicios</a>
+                <a href="Estado_Civil.php" class="btn_2">Estado Civil</a>
+                <a href="Sexos.php" class="btn_2">Sexos</a>
+                <a href="Religiones.php" class="btn_2">Religiones</a>
+                <a href="Tipo_Sangre.php" class="btn_2">Tipos de Sangre</a>
+                <a href="Diagnosticos.php" class="btn_2">Diagnósticos</a>
 			
 		</div>
     </div>

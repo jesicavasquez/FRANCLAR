@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <?php
 session_start();
@@ -32,54 +32,6 @@ include 'conexion.php'
     </section>
     <!-- breadcrumb start-->
 
-    <!--::regervation_part start::-->
-    <section class="regervation_part section_padding">
-        <div class="container">
-            <div class="row align-items-center regervation_content">
-                <div class="col-lg-7">
-                    <div class="regervation_part_iner">
-                        <form>
-                            <h2>Resultados</h2>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="IDPreclinica" placeholder="ID Preclínica">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="PA" placeholder="Presión Arterial">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="FC" placeholder="Frecuencia Cardiaca">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="FR" placeholder="Frecuencia Respiratoria">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="Temperatura" placeholder="Temperatura">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="PAM" placeholder="Presión Arterial Media">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="Glucometria" placeholder="Glucometría">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="Peso" placeholder="Peso">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="Talla" placeholder="Talla">
-                                </div>
-                                <div class="regerv_btn">
-                                    <a href="#" class="btn_2">Guardar</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--::regervation_part end::-->
-
     <!-- footer part start-->
     <?php
 			if(isset($_GET['aksi']) == 'delete'){
@@ -98,11 +50,15 @@ include 'conexion.php'
 				}
 			}
 	 ?>
-    <br>
-    <br>
     <h2>Preclínica</h2>
+    <form class="form-inline my-2 my-lg-0 float-left">
+        <a href="agregarpreclinica.php" class="genric-btn info circle">Agregar</a>
+    </form>
     <br>
-    <br>
+    <form class="form-inline my-2 my-lg-0 float-right">
+        <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
+        <a href=""><button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button></a>
+    </form>
 			<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<tr>

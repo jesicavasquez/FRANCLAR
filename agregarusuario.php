@@ -42,7 +42,7 @@ include 'conexion.php'
                             <h2>Datos del usuario</h2>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <select class="form-control" id="ColaboradorU" name="Colaborador" required>
+                                    <select class="form-control" id="ColaboradorU" name="Colaborador" onchange="crear_usuario();" required>
                                         <option value="0">Seleccione al Colaborador</option>
                                         <?php
                                           $sql=$con -> query("Select * from tbl_empleado");
@@ -57,11 +57,14 @@ include 'conexion.php'
                                     <input type="email" class="form-control" id="EmailU" name="Email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="text" onkeypress="return soloLetras(event)" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="NomU" name="Nom_Usuario" placeholder="Nombre de usuario" required>
+                                    <input type="text"  class="form-control" id="NomU" name="Nom_Usuario"  placeholder="Nombre de usuario" readonly>
                                 </div>                                
-                                <div class="form-group col-md-4">
-                                    <input value= <?php echo generar_password_complejo(8) ?> type="text" class="form-control" id="passwordU" name="Password"  minlength="8" maxlength="30" placeholder="Contraseña" required>
+                                <div class="input-group col-md-4">
+                                    <input value= "<?php echo generar_password_complejo(8) ?>" type="Password" class="form-control" id="passwordU" name="Password"  minlength="8" maxlength="30" placeholder="Contraseña" required>
+                                    <span id="show-hide-passwd" action="hide" class="input-group-addon glyphicon glyphicon-eye-open"></span>
                                 </div>
+                                
+                                
                                 
                                 <div class="form-group col-md-4">
                                     <select class="form-control" id="RolU" name="Rol" required>
@@ -97,16 +100,34 @@ include 'conexion.php'
         $cadena_base .= '0123456789';
         $cadena_base .= '!@#%^&*()_,./<>?;:[]{}\|=+';
 
-        $password = " ";
-        $limite = strlen($cadena_base);
+        $password = '';
+        $limite = strlen($cadena_base) - 1;
 
         for ($i=0; $i < $largo; $i++)
 
-        $password .= $cadena_base[rand(0, $limite)];
+            $password .= $cadena_base[rand(0, $limite)];
 
         return $password;
     }
-    ?>                                      
+
+
+    ?>            
+
+    <script>
+    
+    function crear_usuario(){
+        var ColaboradorU = document.getElementById('ColaboradorU');
+        var displaytext = ColaboradorU.options[ColaboradorU.selectedIndex].text;
+        var primerletra = displaytext.substr(0,1);
+        var palabras = displaytext.split(" ");
+        var apellido = palabras[2];
+        var user = (primerletra + apellido).toUpperCase();
+        
+
+        document.getElementById('NomU').value = user;
+    }
+    
+    </script>                          
 
 
 

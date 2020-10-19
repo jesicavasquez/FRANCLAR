@@ -6,27 +6,24 @@ include ("conexion.php");
     
 	if(isset($_POST['add'])){
 
-        $nombre = mysqli_real_escape_string($con,(strip_tags($_POST['Nombre'],ENT_QUOTES)));
-        $numeroid = mysqli_real_escape_string($con,(strip_tags($_POST['NumeroID'],ENT_QUOTES)));
-        $fechan = mysqli_real_escape_string($con,(strip_tags($_POST['FechaN'],ENT_QUOTES)));
+        $id_empleado = mysqli_real_escape_string($con,(strip_tags($_POST['Colaborador'],ENT_QUOTES)));
+        $nom_usuario = mysqli_real_escape_string($con,(strip_tags($_POST['Nom_Usuario'],ENT_QUOTES)));
         $email = mysqli_real_escape_string($con,(strip_tags($_POST['Email'],ENT_QUOTES)));
-        $telefono = mysqli_real_escape_string($con,(strip_tags($_POST['Telefono'],ENT_QUOTES)));
-        $celular = mysqli_real_escape_string($con,(strip_tags($_POST['Celular'],ENT_QUOTES)));
-        $direccion = mysqli_real_escape_string($con,(strip_tags($_POST['Direccion'],ENT_QUOTES)));
-        $sexo = mysqli_real_escape_string($con,(strip_tags($_POST['Sexo'],ENT_QUOTES)));
-        $estado_civil = mysqli_real_escape_string($con,(strip_tags($_POST['EstadoC'],ENT_QUOTES)));
-        $cargo = mysqli_real_escape_string($con,(strip_tags($_POST['Cargo'],ENT_QUOTES)));
-        $salario = mysqli_real_escape_string($con,(strip_tags($_POST['Salario'],ENT_QUOTES)));
-        $especialidad = mysqli_real_escape_string($con,(strip_tags($_POST['Especialidad'],ENT_QUOTES)));
+        $contraseña = mysqli_real_escape_string($con,(strip_tags($_POST['Password'],ENT_QUOTES)));
+        $id_rol = mysqli_real_escape_string($con,(strip_tags($_POST['Rol'],ENT_QUOTES)));
+        $id_estado = 1;
+        $primer_ingreso = 1;
 	
-	$insert = mysqli_query($con, "INSERT INTO tbl_empleado (Nom_Empleado, Cedula, Fec_Nacimiento, Email, Tel_Empleado, Cel_Empleado, Dir_Empleado, ID_Sexo, ID_Est_Civil, ID_Cargo, Salario, ID_especialidad) 
-                                       VALUES ( '$nombre' , '$numeroid' , '$fechan' , '$email' , '$telefono' , '$celular' , '$direccion' , '$sexo' , '$estado_civil' , '$cargo' , '$salario' , '$especialidad')") or die(mysqli_error());
+	$insert = mysqli_query($con, "INSERT INTO tbl_usuario (ID_Empleado, ID_Estado, Nom_Usuario, email, Contraseña, ID_Rol, Primer_Ingreso) 
+                                       VALUES ( '$id_empleado' , '$id_estado' , '$nom_usuario' , '$email' , '$contraseña' , '$id_rol' , '$primer_ingreso')") or die(mysqli_error());
     
     if($insert){
-        echo "<script> alert('Empleado registrado correctamente');window.history.go(-1);
-		    </script>";
+        echo "<script type='text/javascript'>
+            alert('El Usuario ha sido registrado exitosamente');
+            window.location.href= 'Usuarios.php';
+        </script>";
     }else{
-        echo "<script> alert('El empleado no se ha podido registrar');window.history.go(-1);
+        echo "<script> alert('El Usuario no se ha podido registrar');window.history.go(-1);
 		    </script>";
     }
 }

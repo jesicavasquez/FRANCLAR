@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <?php
 session_start();
@@ -8,6 +8,7 @@ include 'head.php'
 <?php
 include 'conexion.php'
 ?>
+
 <body>
     <!--::header part start::-->
     <?php
@@ -22,7 +23,7 @@ include 'conexion.php'
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2>Consultas</h2>
+                            <h2>Servicios</h2>
                         </div>
                     </div>
                 </div>
@@ -36,11 +37,11 @@ include 'conexion.php'
 			if(isset($_GET['aksi']) == 'delete'){
 				// escaping, additionally removing everything that could be (html/javascript-) code
 				$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
-				$cek = mysqli_query($con, "SELECT * FROM tbl_preclinica WHERE ID_Preclinica='$nik'");
+				$cek = mysqli_query($con, "SELECT * FROM tbl_servicio WHERE ID_Servicio='$nik'");
 				if(mysqli_num_rows($cek) == 0){
 					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> No se encontraron datos.</div>';
 				}else{
-					$delete = mysqli_query($con, "DELETE FROM empleado WHERE ID_Empleado='$nik'");
+					$delete = mysqli_query($con, "DELETE FROM tbl_servicio WHERE ID_Servicio='$nik'");
 					if($delete){
 						echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Datos eliminado correctamente.</div>';
 					}else{
@@ -49,28 +50,30 @@ include 'conexion.php'
 				}
 			}
 	 ?>
-    <h2>Consultas</h2>
+    
     <form class="form-inline my-2 my-lg-0 float-left">
-        <a href="agregarconsulta.php" class="genric-btn info circle">Agregar</a>
+        <a href="agregarservicio.php" class="genric-btn info circle">Agregar</a>
     </form>
-    <br>
+   <br>
     <form class="form-inline my-2 my-lg-0 float-right">
         <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
-        <a href=""><button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button></a>
-    </form><br>
-    <br>
-			<div class="table-responsive">
+
+    </form>
+	<br>
+	<br>
+			
+		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<tr>
                     <th>No</th>
-					<th>Anamnesis</th>
-					<th>Examen Físico</th>
-                    <th>Tratamiento</th>
-                    <th>Próxima Consulta</th>
-                    <th>Acciones</th>
+					<th>Desccipción</th>
+					<th>Precio</th>
+					<th>Acciones</th>
+					
+                    
 				</tr>
 				<?php
-				$sql = mysqli_query($con, "SELECT * FROM tbl_consultas ORDER BY ID_Consulta ASC");
+				$sql = mysqli_query($con, "SELECT * FROM tbl_servicio");
 				if(mysqli_num_rows($sql) == 0){
 					echo '<tr><td colspan="8">No hay datos.</td></tr>';
 				}else{
@@ -78,15 +81,12 @@ include 'conexion.php'
 					while($row = mysqli_fetch_assoc($sql)){
 						echo '
 						<tr>
-                            <td>'.$row['ID_Consulta'].'</td>
-                            <td>'.$row['Anamnesis'].'</td>
-                            <td>'.$row['Exam_Fisico'].'</td>
-                            <td>'.$row['Tratamiento'].'</td>
-                            <td>'.$row['Prox_Cita'].'</td>
-							<td>
-
-							<a href="EditarPersonal.php?nik='.$row['ID_Consulta'].'" title="Editar datos" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-							<a href="Personal.php?aksi=delete&nik='.$row['ID_Consulta'].'" title="Eliminar" onclick="return confirm(\'¿Esta seguro de borrar los datos?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                            <td>'.$row['ID_Servicio'].'</td>
+							<td>'.$row['Descripcion'].'</td>
+							<td>'.$row['Precio'].'</td>		
+							<td>							
+								<a href="EditarEspecialidad.php?nik='.$row['ID_Servicio'].'" title="Editar datos" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+								<a href="Servicios.php?aksi=delete&nik='.$row['ID_Servicio'].'" title="Eliminar" onclick="return confirm(\'¿Esta seguro de borrar los datos del colaborador '.$row['Descripcion'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 							</td>
 						</tr>
 						';
@@ -95,7 +95,7 @@ include 'conexion.php'
 				}
 				?>
 			</table>
-			</div>
+		 </div>
             <br>
             <br>
             <br>
@@ -109,6 +109,7 @@ include 'conexion.php'
     <?php
         include 'script.php'
     ?>
+    
 </body>
 
 </html>
